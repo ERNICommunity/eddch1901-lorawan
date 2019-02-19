@@ -38,7 +38,7 @@ void setupProdDebugEnv()
 
   Serial.println();
   Serial.println("---------------------------------------------");
-  Serial.println("Hello from Wiring LoRaWan Skeleton Application!");
+  Serial.println("Hello from EDDCH1901 LoRaWan Application!");
   Serial.println("---------------------------------------------");
   Serial.println();
 }

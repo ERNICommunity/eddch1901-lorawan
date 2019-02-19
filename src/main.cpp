@@ -31,6 +31,8 @@
 #include <LoraWanAbp.h>
 #include <LoRaWanDriver.h>
 #include <MyLoRaWanConfigAdapter.h>
+#include <ToggleButton.h>
+#include <LoRaWanRxDataToStatusLedAdapter.h>
 
 LoRaWanDriver* m_LoraWanInterface = 0;
 // Pin mapping
@@ -49,6 +51,7 @@ const lmic_pinmap lmic_pins = LmicPinMap_AdafruitFeatherM0();
 SerialCommand* sCmd = 0;
 Assets* assets = 0;
 Battery* battery = 0;
+ToggleButton* statusLed = 0;
 
 void setup()
 {
@@ -74,6 +77,11 @@ void setup()
                                    };
   battery = new Battery(new MyBatteryAdapter(), battCfg);
 
+  //---------------------------------------------------------------------------
+  // Status LED (ToggleButton)
+  //---------------------------------------------------------------------------
+  statusLed = new ToggleButton(ToggleButton::BTN_NC, BUILTIN_LED);
+
   //-----------------------------------------------------------------------------
   // LoRaWan
   //-----------------------------------------------------------------------------
@@ -86,6 +94,7 @@ void setup()
   unsigned char txBuffer[strlen(txString)+1];
   memcpy(txBuffer, txString, strlen(txString));
   m_LoraWanInterface->setPeriodicMessageData(txBuffer, strlen(txString));
+  m_LoraWanInterface->setLoraWanRxDataEventAdapter(new LoRaWanRxDataToStatusLedAdapter(statusLed, m_LoraWanInterface));
 }
 
 void loop()
