@@ -1,4 +1,7 @@
 # wiring-skeleton
+
+:warning: **REPOSITORY NOT ACTIVE SINCE 2019 Dependabot alerts in git security settings disabled**
+
 Wiring / Arduino based Skeleton Embedded Application, powered by [PlatformIO](http://platformio.org "Cross-platform build system")
 
 The project has initially been created for and tested on an Arduino Mega 2560 controller module.
